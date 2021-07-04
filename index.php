@@ -19,7 +19,7 @@
     <br>
 
 
-    <table id="table-data" border="1" width="100%" cellspacing="0" cellpadding="10px">
+    <table id="table-data" border="1" width="50%" align="center" cellspacing="0" cellpadding="10px">
         <tr>
             <th>Roll</th>
             <th>Name</th>
