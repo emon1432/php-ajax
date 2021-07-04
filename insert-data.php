@@ -13,7 +13,7 @@
     <table id="main" border="0" cellspacing="0">
         <tr>
             <td id="header">
-                <h1>Insert Data by Ajax</h1>
+                <h1>Insert & Remove Data by Ajax</h1>
             </td>
         </tr>
         <tr>
@@ -78,6 +78,29 @@
                     });
                 }
 
+            });
+
+            $(document).on("click", "#delete-btn", function() {
+                if (confirm("Do you want to delete this record?")) {
+                    var studentRoll = $(this).data("id");
+                    var element = this;
+                    // alert(studentRoll);
+                    $.ajax({
+                        url: "ajax-delete.php",
+                        type: "POST",
+                        data: {
+                            roll: studentRoll
+                        },
+                        success: function(data) {
+                            if (data == 1) {
+                                $(element).closest("tr").fadeOut();
+                            } else {
+                                $("#error-message").html("Can't Delete Record").slideDown();
+                                $("#success-message").slideUp();
+                            }
+                        }
+                    });
+                }
             });
         });
     </script>

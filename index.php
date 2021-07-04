@@ -23,10 +23,12 @@
         <tr>
             <th>Roll</th>
             <th>Name</th>
+            <th>Delete</th>
         </tr>
         <tr align="center">
             <td>18038</td>
             <td>Emon</td>
+            <td><button id="delete-btn">Delete</button></td>
         </tr>
     </table>
 
@@ -41,6 +43,28 @@
                         $("#table-data").html(data);
                     }
                 });
+            });
+            $(document).on("click", "#delete-btn", function() {
+                if (confirm("Do you want to delete this record?")) {
+                    var studentRoll = $(this).data("id");
+                    var element = this;
+                    // alert(studentRoll);
+                    $.ajax({
+                        url: "ajax-delete.php",
+                        type: "POST",
+                        data: {
+                            roll: studentRoll
+                        },
+                        success: function(data) {
+                            if (data == 1) {
+                                $(element).closest("tr").fadeOut();
+                            } else {
+                                $("#error-message").html("Can't Delete Record").slideDown();
+                                $("#success-message").slideUp();
+                            }
+                        }
+                    });
+                }
             });
 
 

@@ -66,3 +66,12 @@
     top: 15px;
     text-align: center;
 }
+
+#delete-btn {
+    background: red;
+    color: #fff;
+    border: 0;
+    padding: 4px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
