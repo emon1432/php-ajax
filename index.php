@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Ajax</title>
 </head>
 
@@ -20,19 +20,14 @@
 
 
     <table id="table-data" border="1" width="50%" align="center" cellspacing="0" cellpadding="10px">
-        <tr>
-            <th>Roll</th>
-            <th>Name</th>
-            <th>Delete</th>
-        </tr>
-        <tr align="center">
-            <td>18038</td>
-            <td>Emon</td>
-            <td><button id="delete-btn">Delete</button></td>
-        </tr>
+
     </table>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <div id="error-message"></div>
+    <div id="success-message"></div>
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+    <script type="text/javascript" src="js/jQuery.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $("#load-button").on("click", function(e) {
@@ -44,6 +39,7 @@
                     }
                 });
             });
+        
             $(document).on("click", "#delete-btn", function() {
                 if (confirm("Do you want to delete this record?")) {
                     var studentRoll = $(this).data("id");

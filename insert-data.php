@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Data Insert</title>
 </head>
 
@@ -19,8 +19,7 @@
         <tr>
             <td id="table-form">
                 <form id="addForm">
-                    Roll : <input type="text" id="roll">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Name : <input type="text" id="name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Roll : <input type="text" id="roll">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Name : <input type="text" id="name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input type="submit" id="save-button" value="Save">
                 </form>
             </td>
@@ -34,6 +33,14 @@
 
     <div id="error-message"></div>
     <div id="success-message"></div>
+    <div id="modal">
+        <div id="modal-form">
+            <h2>Edit From</h2>
+            <table cellpadding="10" width="100%">
+            </table>
+            <div id="close-btn">X</div>
+        </div>
+    </div>
 
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
     <script type="text/javascript" src="js/jQuery.js"></script>
@@ -102,6 +109,48 @@
                     });
                 }
             });
+            $(document).on("click", ".edit-btn", function() {
+                $('#modal').show();
+                var studentRoll = $(this).data("eid");
+                // alert(studentRoll);
+                $.ajax({
+                    url: "load-update.php",
+                    type: "POST",
+                    data: {
+                        id: studentRoll
+                    },
+                    success: function(data) {
+                        $("#modal-form table").html(data);
+                    }
+                });
+            });
+            $("#close-btn").on("click", function() {
+                $('#modal').hide();
+
+            });
+            //save update
+            $(document).on("click", "#edit-submit", function() {
+                var stuId = $("#edit-id").val();
+                var stuName = $("#edit-name").val();
+                // alert(stuId);
+                $.ajax({
+                    url: "ajax-update.php",
+                    type: "POST",
+                    data: {
+                        id: stuId,
+                        name: stuName
+                    },
+                    success: function(data) {
+                        if (data == 1) {
+                            $('#modal').hide();
+                            loadTable();
+                        }
+
+                    }
+                });
+
+            });
+
         });
     </script>
 </body>
