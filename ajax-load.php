@@ -9,12 +9,14 @@ if (mysqli_num_rows($result) > 0) {
                 <tr style="background:green;">
                     <th width="100px">Roll</th>
                     <th>Name</th>
+                    <th width="100px">Update</th>
                     <th width="100px">Delete</th>
                 </tr>';
     while ($row = mysqli_fetch_assoc($result)) {
         $output .= "<tr align='center'>
                         <td>{$row["Roll"]}</td>
                         <td>{$row["Name"]}</td>
+                        <td><button class='edit-btn' data-eid='{$row["Roll"]}'>Edit</button></td>
                         <td><button id='delete-btn' data-id='{$row["Roll"]}'>Delete</button></td>
                     </tr>";
     }
@@ -24,3 +26,4 @@ if (mysqli_num_rows($result) > 0) {
 } else {
     echo "No Record Found!!!";
 }
+?>
