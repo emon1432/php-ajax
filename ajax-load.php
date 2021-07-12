@@ -1,7 +1,17 @@
 <?php
 
 $conn = mysqli_connect("localhost", "root", "", "phpajax") or die("Connection Failed!!!");
-$sql = "SELECT * FROM students ORDER BY Roll ASC";
+$limit_per_page = 3;
+$page = "";
+if (isset($_POST["page_no"])) {
+    $page = $_POST["page_no"];
+} else {
+    $page = 1;
+}
+
+$offset = ($page - 1) * $limit_per_page;
+
+$sql = "SELECT * FROM students ORDER BY Roll ASC LIMIT {$offset},{$limit_per_page}";
 $result = mysqli_query($conn, $sql);
 $output = "";
 if (mysqli_num_rows($result) > 0) {
@@ -21,9 +31,22 @@ if (mysqli_num_rows($result) > 0) {
                     </tr>";
     }
     $output .= '</table>';
-    mysqli_close($conn);
+    $sql_total = "SELECT * FROM students";
+    $result1 = mysqli_query($conn, $sql_total) or die("Query Failed!!!");
+    $total_records = mysqli_num_rows($result1);
+    $total_pages = ceil($total_records / $limit_per_page);
+
+    $output .= '<div id="pagination">';
+    for ($i = 1; $i <= $total_pages; $i++) {
+        if($i==$page){
+            $class_name = "active";
+        }else{
+            $class_name = "";
+        }
+        $output .= "<a class='{$class_name}' id='{$i}' href=''>{$i}</a>";
+    }
+    $output .= '</div>';
     echo $output;
 } else {
     echo "No Record Found!!!";
 }
-?>

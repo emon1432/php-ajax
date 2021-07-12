@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 04, 2021 at 09:49 PM
+-- Generation Time: Jul 12, 2021 at 03:19 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -39,14 +39,14 @@ CREATE TABLE `students` (
 INSERT INTO `students` (`Roll`, `Name`) VALUES
 (1, 'Emon'),
 (2, 'Adhora'),
-(3, 'Allem'),
+(3, 'mon'),
 (4, 'Sazzad'),
-(5, 'mon'),
-(6, 'Sharmin'),
-(7, 'Khusi'),
-(8, 'Naim'),
-(9, 'Bappy'),
-(10, 'Akash');
+(5, 'Naim'),
+(6, 'Raju'),
+(7, 'Prince'),
+(8, 'Bappy'),
+(9, 'Khusi'),
+(10, 'Khairul');
 
 --
 -- Indexes for dumped tables
@@ -66,7 +66,7 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `Roll` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `Roll` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=465756757;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
     <title>PHP & AJAX</title>
 </head>
 
@@ -34,8 +34,6 @@
             </td>
         </tr>
     </table>
-
-
     <div id="error-message"></div>
     <div id="success-message"></div>
     <div id="modal">
@@ -51,16 +49,26 @@
     <script type="text/javascript" src="js/jQuery.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            function loadTable() {
+            function loadTable(page) {
                 $.ajax({
                     url: "ajax-load.php",
                     type: "POST",
+                    data: {
+                        page_no: page
+                    },
                     success: function(data) {
                         $("#table-data").html(data);
                     }
                 });
             }
             loadTable();
+
+            //pagination start
+            $(document).on("click", "#pagination a", function(e) {
+                e.preventDefault();
+                var page_id = $(this).attr("id");
+                loadTable(page_id);
+            });
             //save data
             $("#save-button").on("click", function(e) {
                 e.preventDefault();
